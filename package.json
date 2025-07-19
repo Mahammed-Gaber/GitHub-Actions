@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A simple Node.js app for GitHub Actions PR testing",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "bash src/test.sh"
   },
