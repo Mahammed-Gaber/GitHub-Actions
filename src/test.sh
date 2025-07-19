@@ -4,7 +4,8 @@
 #src/test.sh
 EXPECTED="Hello, Test"
 
-# OUTPUT=$(node -e "console.log(require('./src/index')('Test'))")
+# OUTPUT=$(node -e "console.log(require('./src/index')('Test'))") > old syntax by commonjs
+
 # Use ES6 syntax for better readability
 OUTPUT=$(node -e "import greet from './src/index.js'; console.log(greet('Test'))")
 
