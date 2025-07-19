@@ -1,11 +1,12 @@
-# Simple test by command line /bin/bash
+# This script tests the functionality of the greet function in index.js
+
+#!/bin/bash
 #src/test.sh
 EXPECTED="Hello, Test"
 
 # OUTPUT=$(node -e "console.log(require('./src/index')('Test'))")
 # Use ES6 syntax for better readability
-OUTPUT=$(node -e "import { greet } from './src/index.mjs'; console.log(greet('Test'))")
-
+OUTPUT=$(node -e "import greet from './src/index.js'; console.log(greet('Test'))" --experimental-modules)
 if [ "$OUTPUT" == "$EXPECTED" ]; then
 
 echo "Test Passed Eng-Mahammed"
