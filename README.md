@@ -52,7 +52,7 @@ To run these workflows successfully:
 
 ---
 
-## Future Plans
+## Next Plans
 
 More workflow examples may be added to demonstrate:
 - Manual triggers (`workflow_dispatch`)
