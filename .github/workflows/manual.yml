@@ -18,4 +18,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Manual-trigger-step
-        run: echo "This workflow was triggered manually."
+        run: echo "This workflow was triggered manually for the ${{ github.event.inputs.environment }} environment."
