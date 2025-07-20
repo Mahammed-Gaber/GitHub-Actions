@@ -2,6 +2,16 @@ name: Manual-trigger-workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose the environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - 'development'
+          - 'staging'
+          - 'production'
 
 jobs:
   manual-job:
