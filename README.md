@@ -28,6 +28,14 @@ This workflow is triggered when code is pushed to the `main` branch.
 
 Useful for understanding the basic structure of a GitHub Actions workflow.
 
+- Prints the following details about the commit (`<< Update`):
+  - The username of the person who made the push (`github.actor`)
+  - The branch the push was made to (`github.ref_name`)
+  - The timestamp of the commit (`github.event.head_commit.timestamp`)
+  - The commit message itself (`github.event.head_commit.message`)
+
+This is useful for logging and auditing code pushes, especially in team environments.
+
 ---
 
 ### 2. `push-pr.yml` - Webhook Triggers
@@ -44,6 +52,47 @@ This setup demonstrates conditional triggering based on paths and the difference
 
 ---
 
+### 3. `manual.yml` - Manual Trigger with Inputs
+
+This workflow is triggered manually using `workflow_dispatch` and allows you to select an environment (e.g., development, staging, production).
+
+**Inputs:**
+- `environment`: A dropdown choice to specify the environment to run the workflow against
+
+**Jobs:**
+- Displays the selected environment as part of the job step
+
+This is useful for simulating environment-based deployment scenarios or manual QA checks.
+
+---
+
+### 4. `jobs.yml` - Sequential and Parallel Jobs
+
+This workflow is triggered manually and demonstrates how to control job dependencies using `needs`.
+
+**Job Structure:**
+- `manual-job1`: Runs first
+- `manual-job2` and `manual-job3`: Run in parallel after `manual-job1` finishes
+- `manual-job4`: Runs after both `manual-job2` and `manual-job3`
+
+Each job prints its name and indicates the order it was executed in.
+
+This file is ideal for learning about job orchestration in complex workflows.
+
+---
+
+### 5. `actions.yml` - Using Built-In GitHub Actions
+
+This workflow is triggered manually and showcases the use of an official GitHub Action (`actions/checkout`).
+
+**Jobs:**
+- Checks out the current repository and branch using `actions/checkout`
+- Prints a message showing the repository name
+
+This file demonstrates how to use built-in reusable actions in your workflows.
+
+---
+
 ## Requirements
 
 To run these workflows successfully:
@@ -55,9 +104,9 @@ To run these workflows successfully:
 ## Next Plans
 
 More workflow examples may be added to demonstrate:
-- Manual triggers (`workflow_dispatch`)
-- Scheduled runs (`cron`)
-- Deployment automation
+- Manual triggers (`workflow_dispatch`) — **Completed**
+- Scheduled runs (`cron`) — *Optional*
+- Deployment automation — *Coming soon*
 
 ---
 
@@ -66,4 +115,5 @@ More workflow examples may be added to demonstrate:
 This project serves as a hands-on learning guide for:
 - Beginners in CI/CD
 - Developers exploring GitHub Actions
-- Frontend developers using React with automated workflows
+
+> While the examples are built around a simple NodeJS file, the concepts and workflows are applicable to any software project.
