@@ -18,3 +18,10 @@ jobs:
 
       - name: List repository files
         run: ls -la
+
+      - name: Print commit information
+        run: |
+          echo "This commit was made by ${{ github.actor }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Time: ${{ github.event.head_commit.timestamp }}"
+          echo "Commit message: ${{ github.event.head_commit.message }}"
