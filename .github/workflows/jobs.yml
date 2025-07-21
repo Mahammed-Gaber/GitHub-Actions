@@ -22,7 +22,7 @@ jobs:
     needs: manual-job1
     steps:
       - name: Step-for-job3
-        run: "echo Job 3: ${{ github.job }} workflow triggered manually."
+        run: echo "Job 3 ${{ github.job }} workflow triggered manually."
 
   manual-job4:
     runs-on: ubuntu-latest
