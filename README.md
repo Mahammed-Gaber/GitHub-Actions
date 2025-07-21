@@ -50,6 +50,15 @@ This workflow is triggered by:
 
 This setup demonstrates conditional triggering based on paths and the difference between push vs. pull request events.
 
+**Requirements:**
+
+To run the test-related steps in these workflows:
+
+- Your project should be initialized with npm
+- A valid test script should exist in your package.json
+
+> You can remove or comment out the test steps if your project doesn't use npm or doesn't include automated tests.
+
 ---
 
 ### 3. `manual.yml` - Manual Trigger with Inputs
@@ -90,14 +99,6 @@ This workflow is triggered manually and showcases the use of an official GitHub 
 - Prints a message showing the repository name
 
 This file demonstrates how to use built-in reusable actions in your workflows.
-
----
-
-## Requirements
-
-To run these workflows successfully:
-- Your project should be initialized with `npm` (for the test step)
-- A valid `test` script should exist in your `package.json`
 
 ---
 
