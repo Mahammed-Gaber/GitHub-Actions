@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple deployment test page to verify successful deployment.">
+    <meta name="keywords" content="deployment, test, page, success">
+    <meta name="author" content="Eng Mahammed Gaber">
+
+    <title>Deployment test page</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Hello, this is a deployment test page!
+        <br>
+        If you see this, the deployment was successful.
+        <br>
+        Current time: <span id="current-time"></span>
+    </h1>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentTime = new Date().toLocaleString();
+            document.getElementById("current-time").textContent = currentTime;
+        });
+    </script>
+</body>
+
+</html>

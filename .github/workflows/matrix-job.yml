@@ -1,0 +1,34 @@
+name: Matrix Job Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose the environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - 'development'
+          - 'staging'
+          - 'production'
+
+jobs:
+  matrix-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.2.2
+      - name: Run Matrix Job
+        run: |
+          echo "Running on ${{ matrix.os }}"
+          echo "This workflow was triggered manually for the ${{ github.event.inputs.environment }} environment."
+          echo "Job: ${{ github.job }} on OS: ${{ matrix.os }}"
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Time: ${{ github.event.head_commit.timestamp }}"
+          echo "Commit message: ${{ github.event.head_commit.message }}"
+          echo "Environment: ${{ github.event.inputs.environment }}"
