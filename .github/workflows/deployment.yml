@@ -19,14 +19,12 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Deploy to Server
+      - name: Show all server files after SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
-          scp -P "$SERVER_PORT" frontend/index.html "$SERVER_USER@$SERVER_IP:/gaber_rar-it.link/public_html/index.html"
-          echo "Deployment completed successfully!" | ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_IP" "cat > /gaber_rar-it.link/public_html/deployment.log"
-          echo "Deployment log created on the server."
-          echo "Deployment to $SERVER_USER@$SERVER_IP completed successfully!"
+          echo "Listing all files in server under /home/$SERVER_USER..."
+          ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_IP" "find /home/$SERVER_USER"
