@@ -21,12 +21,12 @@ jobs:
 
       - name: Deploy to Server
         env:
-        #   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
-          scp -P "$SERVER_PORT" frontend/index.html "$SERVER_USER@$SERVER_IP:/home/$SERVER_USER/public_html/index.html"
-          echo "Deployment completed successfully!" | ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_IP" "cat > /home/$SERVER_USER/public_html/deployment.log"
+          scp -P "$SERVER_PORT" frontend/index.html "$SERVER_USER@$SERVER_IP:/public_html/index.html"
+          echo "Deployment completed successfully!" | ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_IP" "cat > /public_html/deployment.log"
           echo "Deployment log created on the server."
           echo "Deployment to $SERVER_USER@$SERVER_IP completed successfully!"
