@@ -25,7 +25,21 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PATH: ${{ secrets.SERVER_PATH }}
         run: |
           echo "Listing all files in server under /$SERVER_USER..."
           ssh -o StrictHostKeyChecking=no -p "$SERVER_PORT" "$SERVER_USER@$SERVER_IP" \
-            "ls -la /var/www/b8e16f1f-88c4-48cb-94a4-23a3e3555a84/"
+            "ls -la $SERVER_PATH"
+
+      - name: Deploy to Server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PATH: ${{ secrets.SERVER_PATH }}
+        run: |
+          scp -P "$SERVER_PORT" frontend/index.html "$SERVER_USER@$SERVER_IP:$SERVER_PATH/public_html/index.html"
+          echo "Deployment completed successfully!" | ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_IP" "cat > $SERVER_PATH/public_html/deployment.log"
+          echo "Deployment log created on the server."
+          echo "Deployment to $SERVER_USER@$SERVER_IP completed successfully!"
