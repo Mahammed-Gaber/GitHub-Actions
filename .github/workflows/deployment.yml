@@ -26,5 +26,6 @@ jobs:
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
-          echo "Listing all files in server under /home/$SERVER_USER..."
-          ssh -p "$SERVER_PORT" "$SERVER_USER@$SERVER_IP" "find /home/$SERVER_USER"
+          echo "Listing all files in server under /$SERVER_USER..."
+          ssh -o StrictHostKeyChecking=no -p "$SERVER_PORT" "$SERVER_USER@$SERVER_IP" \
+            "ls -la /var/www/b8e16f1f-88c4-48cb-94a4-23a3e3555a84/"
