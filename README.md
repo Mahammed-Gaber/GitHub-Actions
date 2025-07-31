@@ -102,12 +102,43 @@ This file demonstrates how to use built-in reusable actions in your workflows.
 
 ---
 
+### 6. `matrix-job.yml` - Matrix Strategy Across OSs
+
+This workflow is manually triggered using `workflow_dispatch` and utilizes a **matrix strategy** to run jobs in parallel on different operating systems (`ubuntu`, `windows`, and `macOS`).
+
+**Inputs:**
+- `environment`: Select an environment from development, staging, or production
+
+**Jobs:**
+- Runs the same steps on each OS:
+  - Checks out the repository
+  - Prints job, OS, actor, branch, timestamp, and commit message
+
+This file is helpful for testing how your project behaves on different environments and platforms.
+
+---
+
+### 7. `deployment.yml` - SSH-Based Deployment on Push
+
+This workflow is triggered automatically on every push to the `main` branch.
+
+**Jobs:**
+- Sets up SSH using a private key stored in GitHub Secrets
+- Lists the files on the target server for verification
+- Deploys `frontend/index.html` to a live server via SCP
+- Creates a `deployment.log` file on the server to confirm the deployment
+
+This setup is ideal for teams looking to implement basic CI/CD deployment pipelines to a test or production server securely over SSH.
+
+---
+
 ## Next Plans
 
 More workflow examples may be added to demonstrate:
 - Manual triggers (`workflow_dispatch`) — **Completed**
 - Scheduled runs (`cron`) — *Optional*
-- Deployment automation — *Coming soon*
+- Deployment automation — **Completed**
+- Advanced expressions and commands — *Coming soon*
 
 ---
 
